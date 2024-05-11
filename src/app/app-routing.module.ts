@@ -3,25 +3,35 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './components/events/events.component';
 import { MapComponent } from './components/map/map.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
-import { SingInComponent } from './components/auth/sing-in/sing-in.component';
-import { SingUpComponent } from './components/auth/sing-up/sing-up.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { authGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  {path: 'events', component: EventsComponent},
-  {path: 'map', component: MapComponent},
-  {path: 'volunteers', component: VolunteersComponent},
   {
     path: 'auth',
-    children: [
-      {path: "sign-in", component: SingInComponent},
-      {path: "sign-up", component: SingUpComponent},
-      {path: "", redirectTo: "sign-in", pathMatch: "full"},
-    ]
+    component: AuthComponent
   },
+  {
+    path: 'events',
+    component: EventsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'map',
+    component: MapComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'volunteers',
+    component: VolunteersComponent,
+    canActivate: [authGuard],
+  },
+  { path: '', redirectTo: 'events', pathMatch: 'full' },
+  { path: '**', redirectTo: 'events' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

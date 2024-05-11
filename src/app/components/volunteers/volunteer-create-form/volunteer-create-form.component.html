@@ -1,5 +1,5 @@
 <div
-  *ngIf="show"
+  *ngIf="isOpen"
   class="relative z-10"
   aria-labelledby="slide-over-title"
   role="dialog"
@@ -26,7 +26,7 @@
                 </h2>
                 <div class="ml-3 flex h-7 items-center">
                   <button
-                    (click)="close()"
+                    (click)="closeView()"
                     type="button"
                     class="relative rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                   >
@@ -49,15 +49,191 @@
                   </button>
                 </div>
               </div>
-              <div class="mt-1">
+              <!-- <div class="mt-1">
                 <p class="text-sm text-indigo-300">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit
                   aliquam ad hic recusandae soluta.
                 </p>
-              </div>
+              </div> -->
             </div>
-            <div class="relative flex-1 px-4 py-6 sm:px-6">
+            <div class="relative flex-1 px-4 sm:px-6">
               <!-- Your content -->
+              <form>
+                <div class="border-b border-gray-900/10 pb-12">
+                  <div
+                    class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                  >
+                    <div class="sm:col-span-3">
+                      <label
+                        for="first-name"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Імʼя</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.firstName"
+                          type="text"
+                          name="first-name"
+                          id="first-name"
+                          autocomplete="given-name"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="last-name"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Прізвище</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.lastName"
+                          type="text"
+                          name="last-name"
+                          id="last-name"
+                          autocomplete="family-name"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="email"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Електронна пошта</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.email"
+                          id="email"
+                          name="email"
+                          type="email"
+                          autocomplete="email"
+                          placeholder="you@example.com"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="country"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Номер телефону
+                      </label>
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.mobileNumber"
+                          id="mobileNumber"
+                          name="mobileNumber"
+                          type="mobileNumber"
+                          autocomplete="mobileNumber"
+                          placeholder="+38 (099) 115-33-22"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="city"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Місто</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.city"
+                          id="city"
+                          name="city"
+                          type="text"
+                          autocomplete="city"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="birthDate"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Дата народження</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newVolunteer.birthDate"
+                          id="birthDate"
+                          name="birthDate"
+                          type="date"
+                          autocomplete="city"
+                          class="block w-full rounded-md border-0 pt-1 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="sex"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Стать</label
+                      >
+                      <select
+                        [(ngModel)]="newVolunteer.sex"
+                        id="sex"
+                        name="sex"
+                        class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      >
+                        <option
+                          *ngFor="let option of optionSex"
+                          [value]="option.value"
+                        >
+                          {{ option.label }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        for="qualification"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Квалафікація</label
+                      >
+                      <select
+                        [(ngModel)]="newVolunteer.qualification"
+                        id="qualification"
+                        name="qualification"
+                        class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      >
+                        <option
+                          *ngFor="let option of optionQualification"
+                          [value]="option.value"
+                        >
+                          {{ option.label }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-end gap-x-6">
+                  <button
+                    (click)="reset()"
+                    type="button"
+                    class="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    Скасувати
+                  </button>
+                  <button
+                    (click)="submit()"
+                    type="submit"
+                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Створити
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

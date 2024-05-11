@@ -39,7 +39,7 @@
       </div>
 
       <button
-        (click)="volunteerCreate.toggleOpen"
+        (click)="volunteerCreate.openView()"
         type="button"
         class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
@@ -88,7 +88,7 @@
           <tbody>
             <tr
               *ngFor="let volunteer of volunteers"
-              (click)="volunteerDetails.toggleOpen()"
+              (click)="volunteerDetails.openView(volunteer)"
               class="focus-visible:bg-slate-400"
             >
               <td
@@ -140,10 +140,8 @@
   </div>
 </div>
 
-<app-volunteer-details
-  #volunteerDetails
-  [volunteer]="selectedVolunteer"
-/>
-<app-volunteer-create-form #volunteerCreate
-(createEvent)="onCreateVolunteer($event)"
+<app-volunteer-details #volunteerDetails />
+<app-volunteer-create-form
+  #volunteerCreate
+  (createEvent)="onCreateVolunteer($event)"
 />

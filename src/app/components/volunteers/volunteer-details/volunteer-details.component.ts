@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserDetails } from 'src/app/domain/data/user';
 
 @Component({
@@ -7,6 +7,16 @@ import { UserDetails } from 'src/app/domain/data/user';
   styleUrls: ['./volunteer-details.component.scss'],
 })
 export class VolunteerDetailsComponent {
-  @Input() volunteer?: UserDetails;
-  @Input() show: boolean = false;
+  
+  volunteer!: UserDetails;
+  isOpen = false;
+
+  openView(volunteer: UserDetails) {
+    this.isOpen = true;
+    this.volunteer = volunteer;
+  }
+
+  closeView() {
+    this.isOpen = false;
+  }
 }

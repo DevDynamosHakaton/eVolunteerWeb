@@ -8,7 +8,7 @@ export interface UserDetails {
   mobileNumber: string,
   nationality: string,
   city: string,
-  birthDate: string,
+  birthDate: Date,
   createdAt: Date,
   status: UserStatus,
   role: UserRole,
@@ -24,7 +24,8 @@ export enum UserQualification {
   SAVIOR,
   LAW_OFFICER,
   MEDIC,
-  CIVIL
+  CIVIL,
+  MILITARY
 }
 
 export enum UserStatus {
