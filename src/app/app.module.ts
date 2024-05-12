@@ -1,4 +1,4 @@
-import { HostListener, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import { FormsModule } from '@angular/forms';
+import { EventCreateFormComponent } from './components/events/event-create-form/event-create-form.component';
+import { EventDetailsComponent } from './components/events/event-details/event-details.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     VolunteersComponent,
     EventsComponent,
     VolunteerDetailsComponent,
-    VolunteerCreateFormComponent
+    VolunteerCreateFormComponent,
+    EventCreateFormComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

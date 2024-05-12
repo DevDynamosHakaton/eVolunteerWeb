@@ -1,1 +1,69 @@
-<p>map works!</p>
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="py-3">
+    <google-map
+      height="500px"
+      width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+    >
+      <map-marker
+        #markerElem
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"
+      >
+      </map-marker>
+    </google-map>
+
+    <span class="isolate inline-flex rounded-md shadow-sm">
+      <button
+        (click)="zoomIn()"
+        type="button"
+        class="relative inline-flex items-center rounded-l-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+      >
+        <span class="sr-only">Приблизити</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6"
+          />
+        </svg>
+      </button>
+      <button
+        (click)="zoomOut()"
+        type="button"
+        class="relative -ml-px inline-flex items-center bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+      >
+        <span class="sr-only">Віддалити</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6"
+          />
+        </svg>
+      </button>
+     
+    </span>
+  </div>
+</div>
+
+<app-event-create-form #createForm />

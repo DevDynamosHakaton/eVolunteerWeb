@@ -1,1 +1,142 @@
-<p>events works!</p>
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Події</h1>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex gap-3">
+      <div class="relative flex-grow focus-within:z-10">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+        >
+          <svg
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          name="mobile-search-candidate"
+          id="mobile-search-candidate"
+          class="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:hidden"
+          placeholder="Пошук події"
+        />
+        <input
+          type="text"
+          name="desktop-search-candidate"
+          id="desktop-search-candidate"
+          class="hidden w-full rounded-lg border-0 py-1.5 pl-10 text-sm leading-6 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:block"
+          placeholder="Пошук події"
+        />
+      </div>
+
+      <button
+        (click)="createForm.openView()"
+        type="button"
+        class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Додати подію
+      </button>
+    </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle">
+        <table class="min-w-full border-separate border-spacing-0">
+          <thead>
+            <tr>
+              <th
+                scope="col"
+                class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+              >
+                Час створення
+              </th>
+              <th
+                scope="col"
+                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell"
+              >
+                Тип події
+              </th>
+              <th
+                scope="col"
+                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell"
+              >
+                Адреса
+              </th>
+              <th
+                scope="col"
+                class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+              >
+                Статус
+              </th>
+              <th
+                scope="col"
+                class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+              >
+                Залучено
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let event of events"
+              (click)="details.openView(event)"
+              class="focus-visible:bg-slate-400"
+            >
+              <td
+                class="whitespace-nowrap border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+              >
+                {{ event.createdAt | date : "date" }}
+              </td>
+              <td
+                class="whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-500 lg:table-cell"
+              >
+                {{ event.type }}
+              </td>
+              <td
+                class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500"
+              >
+                {{ event.address }}
+              </td>
+
+              <td
+                class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500"
+              >
+                <span
+                  *ngIf="event.status === 0"
+                  class="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
+                  >Не почато</span
+                >
+                <span
+                  *ngIf="event.status === 1"
+                  class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                  >В процесі</span
+                >
+                <span
+                  *ngIf="event.status === 2"
+                  class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
+                  >Завершено</span
+                >
+              </td>
+              <td
+                class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500"
+              >
+                {{ event.volunteers.length }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-event-create-form #createForm (createEvent)="onCreateEvent($event)" />
+<app-event-details #details />

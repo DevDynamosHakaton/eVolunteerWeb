@@ -8,9 +8,7 @@ import { UserDetailsService } from 'src/app/service/user-details.service';
   styleUrls: ['./volunteers.component.scss'],
 })
 export class VolunteersComponent implements OnInit {
-  @Input() volunteers: UserDetails[] = [];
-
-  selectedVolunteer?: UserDetails;
+  volunteers: UserDetails[] = [];
 
   constructor(private userDetailsService: UserDetailsService) {}
 

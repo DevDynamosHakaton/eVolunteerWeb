@@ -1,0 +1,220 @@
+<div
+  *ngIf="isOpen"
+  class="relative z-10"
+  aria-labelledby="slide-over-title"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="fixed inset-0 bg-black bg-opacity-25"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10"
+      >
+        <div class="pointer-events-auto w-screen max-w-md">
+          <div
+            class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
+          >
+            <div class="bg-indigo-700 px-4 py-6 sm:px-6">
+              <div class="flex items-center justify-between">
+                <h2
+                  class="text-base font-semibold leading-6 text-white"
+                  id="slide-over-title"
+                >
+                  Нова подія
+                </h2>
+                <div class="ml-3 flex h-7 items-center">
+                  <button
+                    (click)="closeView()"
+                    type="button"
+                    class="relative rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                  >
+                    <span class="absolute -inset-2.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="mt-1">
+                <p class="text-sm text-indigo-300">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit
+                  aliquam ad hic recusandae soluta.
+                </p>
+              </div> -->
+            </div>
+            <div class="relative flex-1 px-4 sm:px-6">
+              <!-- Your content -->
+              <form>
+                <div class="border-b border-gray-900/10 pb-12">
+                  <div
+                    class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                  >
+                    <div class="sm:col-span-6">
+                      <label
+                        for="name"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Назва</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newObject.name"
+                          type="text"
+                          name="name"
+                          id="name"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label
+                        for="description"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Опис</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newObject.description"
+                          type="text"
+                          name="description"
+                          id="description"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Тип події</label
+                      >
+                      <select
+                        [(ngModel)]="newObject.type"
+                        class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      >
+                        <option
+                          *ngFor="let option of optionType"
+                          [value]="option.value"
+                        >
+                          {{ option.label }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                      <label
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Статус</label
+                      >
+                      <select
+                        [(ngModel)]="newObject.status"
+                        class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      >
+                        <option
+                          *ngFor="let option of optionStatus"
+                          [value]="option.value"
+                        >
+                          {{ option.label }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <label
+                        for="text"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Адреса</label
+                      >
+                      <div class="mt-2">
+                        <input
+                          [(ngModel)]="newObject.address"
+                          id="address"
+                          name="address"
+                          type="address"
+                          autocomplete="address"
+                          class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                      <google-map
+                        height="500px"
+                        width="100%"
+                        [zoom]="zoom"
+                        [center]="center"
+                        [options]="options"
+                        (mapClick)="addMarker($event)"
+                      >
+                        <map-marker
+                          #markerElem
+                          *ngIf="marker"
+                          [position]="marker.position"
+                        >
+                        </map-marker>
+                      </google-map>
+                  
+                      <span class="isolate my-2 inline-flex rounded-md shadow-sm">
+                        <button (click)="zoomIn()" type="button" class="relative inline-flex items-center rounded-l-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                          <span class="sr-only">Приблизити</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                          </svg>
+                        </button>
+                        <button (click)="zoomOut()" type="button" class="relative -ml-px inline-flex items-center bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                          <span class="sr-only">Віддалити</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
+                          </svg>
+                        </button>
+                        <button (click)="reset()" type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                          <span class="sr-only">Забрати точки</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                          
+                        </button>
+                      </span>
+                  
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 mb-5 flex items-center justify-end gap-x-6">
+                  <button
+                    (click)="reset()"
+                    type="button"
+                    class="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    Скасувати
+                  </button>
+                  <button
+                    (click)="submit()"
+                    type="submit"
+                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Створити
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

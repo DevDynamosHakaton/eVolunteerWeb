@@ -17,24 +17,26 @@ export interface UserDetails {
 }
 
 export enum UserSex {
-  MALE,FEMALE,OTHER
+  MALE = "Чоловік",
+  FEMALE = "Жінка",
+  OTHER = "Інше",
 }
 
 export enum UserQualification {
-  SAVIOR,
-  LAW_OFFICER,
-  MEDIC,
-  CIVIL,
-  MILITARY
+  SAVIOR = "Рятівник",
+  LAW_OFFICER = "Правоохоронець",
+  MEDIC = "Медик",
+  CIVIL = "Цивільний",
+  MILITARY = "Військовий"
 }
 
 export enum UserStatus {
   ACTIVE,
   INACTIVE,
-  INVOLVED
+  INVOLVED,
 }
 
 export enum UserRole {
-  ADMIN,
-  VOLUNTEER
+  ADMIN = 'Адміністратор',
+  VOLUNTEER = 'Волонтер'
 }

@@ -22,7 +22,7 @@
                   class="text-base font-semibold leading-6 text-white"
                   id="slide-over-title"
                 >
-                  {{ volunteer.firstName }} {{ volunteer.lastName }}
+                  {{ event.type }}
                 </h2>
                 <div class="ml-3 flex h-7 items-center">
                   <button
@@ -49,9 +49,9 @@
                   </button>
                 </div>
               </div>
-              <div class="mt-1" *ngIf="volunteer.createdAt">
+              <div class="mt-1" *ngIf="event.createdAt">
                 <p class="text-sm text-indigo-300">
-                  Зареєстровано: {{ volunteer.createdAt | date : "date" }}
+                  Зареєстровано: {{ event.createdAt | date : "date" }}
                 </p>
               </div>
             </div>
@@ -62,72 +62,24 @@
                     class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
                   >
                     <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Електронна пошта
+                      Опис
                     </dt>
                     <dd
                       class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
-                      {{ volunteer.email }}
+                      {{ event.description }}
                     </dd>
                   </div>
                   <div
                     class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
                   >
                     <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Номер телефону
+                      Адреса
                     </dt>
                     <dd
                       class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
-                      {{ volunteer.mobileNumber }}
-                    </dd>
-                  </div>
-                  <div
-                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-                  >
-                    <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Місто
-                    </dt>
-                    <dd
-                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
-                    >
-                      {{ volunteer.city }}
-                    </dd>
-                  </div>
-                  <div
-                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-                  >
-                    <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Кваліфікація
-                    </dt>
-                    <dd
-                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
-                    >
-                      {{ volunteer.qualification }}
-                    </dd>
-                  </div>
-                  <div
-                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-                  >
-                    <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Стать
-                    </dt>
-                    <dd
-                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
-                    >
-                      {{ volunteer.sex }}
-                    </dd>
-                  </div>
-                  <div
-                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
-                  >
-                    <dt class="text-sm font-medium leading-6 text-gray-900">
-                      Дата народження
-                    </dt>
-                    <dd
-                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
-                    >
-                      {{ volunteer.birthDate | date : "shortDate" }}
+                      {{ event.address }}
                     </dd>
                   </div>
                   <div
@@ -139,21 +91,45 @@
                     <dd
                       class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
-                      <span
-                        *ngIf="volunteer.status === 1"
-                        class="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
-                        >Неактивний</span
-                      >
-                      <span
-                        *ngIf="volunteer.status === 2"
-                        class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
-                        >Залучений</span
-                      >
-                      <span
-                        *ngIf="volunteer.status === 0"
-                        class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
-                        >Активний</span
-                      >
+                    <span
+                    *ngIf="event.status === 0"
+                    class="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
+                    >Не почато</span
+                  >
+                  <span
+                    *ngIf="event.status === 1"
+                    class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                    >В процесі</span
+                  >
+                  <span
+                    *ngIf="event.status === 2"
+                    class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
+                    >Завершено</span
+                  >
+                    </dd>
+                  </div>
+                  <div
+                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                  >
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                      Запитано волонтерів
+                    </dt>
+                    <dd
+                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                      {{ event.volunteersAskAmount }}
+                    </dd>
+                  </div>
+                  <div
+                    class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+                  >
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                      К-сть волонтерів
+                    </dt>
+                    <dd
+                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                      {{ event.volunteers.length }}
                     </dd>
                   </div>
                 </dl>

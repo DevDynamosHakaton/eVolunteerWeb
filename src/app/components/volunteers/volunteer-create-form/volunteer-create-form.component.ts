@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { flatMap } from 'rxjs';
 import { UserDetails, UserQualification, UserRole, UserSex, UserStatus } from 'src/app/domain/data/user';
+import { AuthService } from 'src/app/service/auth.service';
 import { UserDetailsService } from 'src/app/service/user-details.service';
 
 @Component({
@@ -33,8 +34,8 @@ export class VolunteerCreateFormComponent {
     createdAt: new Date(),
     status: UserStatus.INACTIVE,
     role: UserRole.VOLUNTEER,
-    qualification: 0,
-    sex: 0,
+    qualification: UserQualification.CIVIL,
+    sex: UserSex.FEMALE,
   };
 
   optionQualification = [
@@ -48,7 +49,7 @@ export class VolunteerCreateFormComponent {
   optionSex = [
     { label: 'Жінка', value: UserSex.FEMALE },
     { label: 'Чоловік', value: UserSex.MALE },
-    { label: 'Інше', value: UserSex.OTHER }
+    { label: 'Інше', value: UserSex.OTHER },
   ];
 
   constructor(private userService: UserDetailsService) {}
@@ -77,9 +78,9 @@ export class VolunteerCreateFormComponent {
       birthDate: new Date(),
       createdAt: new Date(),
       status: 0,
-      role: 0,
-      qualification: 0,
-      sex: 0,
+      role: UserRole.VOLUNTEER,
+      qualification: UserQualification.CIVIL,
+      sex: UserSex.FEMALE,
     };
   }
 
