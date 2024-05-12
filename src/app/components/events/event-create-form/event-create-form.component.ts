@@ -33,7 +33,7 @@ export class EventCreateFormComponent implements OnInit {
     type: EventType.EXPLOSION,
     status: EventStatus.NOT_STARTED,
     createdAt: new Date().toDateString(),
-    volunteers: [],
+    volunteers: [''],
     volunteersAskAmount: 0,
     lat: 0,
     lng: 0,
@@ -82,7 +82,7 @@ export class EventCreateFormComponent implements OnInit {
       type: EventType.EXPLOSION,
       status: EventStatus.NOT_STARTED,
       createdAt: new Date().toDateString(),
-      volunteers: [],
+      volunteers: [''],
       volunteersAskAmount: 0,
       lat: 0,
       lng: 0,
@@ -94,6 +94,7 @@ export class EventCreateFormComponent implements OnInit {
       next: (data) => {
         this.closeView();
         this.createEvent.emit(data);
+        this.reset();
       },
       error: (error) => console.log(error),
     });

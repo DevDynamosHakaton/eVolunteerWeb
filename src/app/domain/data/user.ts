@@ -31,9 +31,9 @@ export enum UserQualification {
 }
 
 export enum UserStatus {
-  ACTIVE,
-  INACTIVE,
-  INVOLVED,
+  ACTIVE = "Активний",
+  INACTIVE = "Неактивний",
+  INVOLVED = "Залучений",
 }
 
 export enum UserRole {

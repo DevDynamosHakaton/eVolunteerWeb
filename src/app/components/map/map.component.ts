@@ -44,9 +44,9 @@ export class MapComponent implements OnInit {
         data.forEach((event) => {
           this.markers.push({
             position: { lat: event.lat, lng: event.lng },
-            label: event.name,
-            title: "",
-            info: "",
+            label: '',
+            title: '',
+            info: '',
             options: '',
           });
         });

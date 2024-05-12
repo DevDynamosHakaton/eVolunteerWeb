@@ -12,6 +12,7 @@ import { VolunteerDetailsComponent } from './components/volunteers/volunteer-det
 import { VolunteerCreateFormComponent } from './components/volunteers/volunteer-create-form/volunteer-create-form.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     GoogleMapsModule,
   ],
   providers: [],

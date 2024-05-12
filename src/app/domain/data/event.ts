@@ -8,7 +8,7 @@ export interface Event {
   type: EventType,
   status: EventStatus,
   createdAt: string,
-  volunteers: string[]
+  volunteers: string[],
   volunteersAskAmount: number
 }
 

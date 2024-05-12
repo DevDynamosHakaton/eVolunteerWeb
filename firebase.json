@@ -6,5 +6,22 @@
   "storageBucket": "evolunteer-2543f.appspot.com",
   "messagingSenderId": "693826860872",
   "appId": "1:693826860872:web:41a531f38b2138fa45a57d",
-  "measurementId": "G-E38023PLYG"
+  "measurementId": "G-E38023PLYG",
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist/e-volunteer-web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }

@@ -16,7 +16,7 @@
           <div
             class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
           >
-            <div class="bg-indigo-700 px-4 py-6 sm:px-6">
+            <div class="bg-blue-700 px-4 py-6 sm:px-6">
               <div class="flex items-center justify-between">
                 <h2
                   class="text-base font-semibold leading-6 text-white"
@@ -28,7 +28,7 @@
                   <button
                     (click)="closeView()"
                     type="button"
-                    class="relative rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                    class="relative rounded-md bg-blue-700 text-blue-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                   >
                     <span class="absolute -inset-2.5"></span>
                     <span class="sr-only">Close panel</span>
@@ -50,7 +50,7 @@
                 </div>
               </div>
               <div class="mt-1" *ngIf="volunteer.createdAt">
-                <p class="text-sm text-indigo-300">
+                <p class="text-sm text-blue-300">
                   Зареєстровано: {{ volunteer.createdAt | date : "date" }}
                 </p>
               </div>
@@ -140,17 +140,17 @@
                       class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
                       <span
-                        *ngIf="volunteer.status === 1"
+                        *ngIf="volunteer.status === 'Неактивний'"
                         class="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
                         >Неактивний</span
                       >
                       <span
-                        *ngIf="volunteer.status === 2"
+                        *ngIf="volunteer.status === 'Залучений'"
                         class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
                         >Залучений</span
                       >
                       <span
-                        *ngIf="volunteer.status === 0"
+                        *ngIf="volunteer.status === 'Активний'"
                         class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
                         >Активний</span
                       >

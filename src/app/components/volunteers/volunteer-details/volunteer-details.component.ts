@@ -10,6 +10,7 @@ export class VolunteerDetailsComponent {
   
   volunteer!: UserDetails;
   isOpen = false;
+UserStatus: any;
 
   openView(volunteer: UserDetails) {
     this.isOpen = true;
